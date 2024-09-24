@@ -8,9 +8,6 @@ prefijos_comunes = ["the", "its", "real", "official"]
 sufijos_comunes = ["123", "01", "00", "official", "x", "_x", "ok"]
 
 def sustituir_letras(nombre, sustituir_primera=False):
-    """
-    Reemplaza letras del nombre con números o símbolos según el diccionario.
-    """
     nombre_sustituido = nombre
     for letra, reemplazo in sustituciones.items():   
         nombre_sustituido = nombre_sustituido.replace(letra, reemplazo)
@@ -28,8 +25,6 @@ def generar_nombres_usuario(nombre_completo, anio=None):
     nombre = partes[0].lower()
     apellido = partes[1].lower() if len(partes) > 1 else ""
 
-    
-
     # Lista para almacenar los nombres de usuario posibles (utilizando un set para eliminar duplicados)
     posibles_nombres = set()
 
@@ -44,7 +39,7 @@ def generar_nombres_usuario(nombre_completo, anio=None):
     posibles_nombres.add(f"{nombre}{apellido}123")
     posibles_nombres.add(f"{nombre}{apellido}00")
     posibles_nombres.add(f"{nombre}{apellido}01")
-    posibles_nombres.add(f"{nombre}{apellido}0")  # Nueva combinación con 0 al final
+    posibles_nombres.add(f"{nombre}{apellido}0")  
 
 
     for prefijo in prefijos_comunes:
@@ -111,7 +106,6 @@ def generar_nombres_usuario(nombre_completo, anio=None):
     nuevas_variaciones = set()
     for nombre_variacion in posibles_nombres:
         nuevas_variaciones.add(sustituir_letras(nombre_variacion))
-        
         nuevas_variaciones.add(sustituir_letras(nombre_variacion, sustituir_primera=True))
   
     # Unir las variaciones originales y las sustituidas
@@ -120,10 +114,8 @@ def generar_nombres_usuario(nombre_completo, anio=None):
     # Eliminar duplicados y convertir de nuevo a lista
     posibles_nombres = list(posibles_nombres)
     
-    #print(posibles_nombres)
-
     return posibles_nombres
 
-# Ejemplo de uso
-nombre_completo = ""
-variaciones = generar_nombres_usuario(nombre_completo)
+## Ejemplo de uso
+# nombre_completo = ""
+# variaciones = generar_nombres_usuario(nombre_completo)
